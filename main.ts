@@ -1,7 +1,26 @@
 input.onButtonPressed(Button.A, function () {
-    radio.sendString("CHILLI DOGS")
+    radio.sendString("<")
+})
+input.onButtonPressed(Button.AB, function () {
+    radio.sendString("^")
 })
 radio.onReceivedString(function (receivedString) {
-    basic.showString(receivedString)
+    if (receivedString == "DUCKS") {
+        basic.showLeds(`
+            . # # . .
+            # # # . .
+            . # # # #
+            . # # # #
+            . . # . .
+            `)
+    } else {
+        basic.showString(receivedString)
+    }
 })
-radio.setGroup(1e+308)
+input.onButtonPressed(Button.B, function () {
+    radio.sendString(">")
+})
+input.onGesture(Gesture.Shake, function () {
+    radio.sendString("Open Door")
+})
+radio.setGroup(-1e+308)
